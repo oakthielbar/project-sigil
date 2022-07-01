@@ -8,16 +8,18 @@ extends Node2D
 var touching = 0
 
 export(Resource) var character
-
+export(Array) var schools = []
 onready var sprite = $AnimatedSprite
-
 
 func _ready():
 	# The player follows the mouse cursor automatically, so there's no point
 	# in displaying the mouse cursor.
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	schools.append(self.character.get_default_school())
+	print("Schools are: ")
+	print(schools)
 
-func _process(delta):
+func _process(_delta):
 	var move_vec: Vector2
 	if Input.is_action_pressed("move_up"):
 		move_vec += Vector2(0, -1)
@@ -30,6 +32,9 @@ func _process(delta):
 
 	position += move_vec * character.move_speed
 
+	print("Processing schools...")
+	for school in schools:
+		print("Processing: " + school.school_name)
 
 func _on_body_shape_entered(_body_id, _body, _body_shape, _local_shape):
 	touching += 1

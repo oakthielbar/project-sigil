@@ -7,3 +7,4 @@ script = ExtResource( 1 )
 name = "Boop"
 health = 4
 move_speed = 10.0
+grimoires = [  ]
